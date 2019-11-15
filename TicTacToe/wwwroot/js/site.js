@@ -41,12 +41,12 @@ function nextTurn()
     {
         currentTurn = "X";
     }
-    document.getElementById("turn").innerText = "It is  player " + currentTurn + "'s turn!";
+    document.getElementsById("turn").innerText = "It is  player " + currentTurn + "'s turn!";
 }
 
 function declareWinner()
 {
-    document.getElementById("turn").innerText = "Player " + currentTurn + " wins!";
+    document.getElementsById("turn").innerText = "Player " + currentTurn + " wins!";
 }
 
 function checkForWin()
@@ -76,7 +76,37 @@ function checkForWin()
 
     // Check for diagonals
 
-    
+    var squares = document.getElementsByClassName("square");
+    for (var i = 0; i < squares.length; i++)
+    {
+        squares[i].addEventListener('dragenter', onDragEnter);
+        squares[i].addEventListener('dragleave', onDragLeave);
+        squares[i].addEventListener('dragstart', onDragStart);
+        squares[i].addEventListener('dragend', onDragEnd);
+    }
 
+    function onDragEnter(event)
+    {
+        if (event.target.classList.contains("checker")) return;
+        if (event.target.classList.contains("red")) return;
+        if (event.target.children, length > 0) return;
+        event.target.style.backgroundColor = "gold";
+    }
+
+    function onDragLeave(event)
+    {
+        event.target.style.backgroundColor = null;
+    }
+
+    function onDragStart(event)
+    {
+        document.getElementById("fromX").value = event.target.dataset.x;
+        document.getElementById("fromY").value = event.targer.dataset.y;
+    }
+
+    function onDragEnd(event)
+    {
+        document.getElementById("checkers-form").Submit;
+    }
 }
 //() => {}
